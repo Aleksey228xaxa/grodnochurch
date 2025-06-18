@@ -1,0 +1,255 @@
+{
+  "format": "custom",
+  "id": "home_page",
+  "label": "Home page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background_Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Subtitle",
+          "placeholder": ""
+        }
+      },
+      "text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "titleaboutus": {
+        "type": "Text",
+        "config": {
+          "label": "TitleAboutUS",
+          "placeholder": ""
+        }
+      },
+      "textaboutus": {
+        "type": "StructuredText",
+        "config": {
+          "label": "TextAboutUs",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "image_galery": {
+        "type": "Group",
+        "config": {
+          "label": "Image_Galery",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
+      "title_first_time": {
+        "type": "Text",
+        "config": {
+          "label": "Title_First_Time",
+          "placeholder": ""
+        }
+      },
+      "text_first_time": {
+        "type": "Text",
+        "config": {
+          "label": "Text_First_Time",
+          "placeholder": ""
+        }
+      },
+      "title_sermons": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Sermons",
+          "placeholder": ""
+        }
+      },
+      "text_sermons": {
+        "type": "Text",
+        "config": {
+          "label": "Text_Sermons",
+          "placeholder": ""
+        }
+      },
+      "video_galery": {
+        "type": "Group",
+        "config": {
+          "label": "Video_Galery",
+          "repeat": true,
+          "fields": {
+            "video_url": {
+              "type": "Link",
+              "config": {
+                "label": "video_url",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      },
+      "title_kalendar": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Kalendar",
+          "placeholder": ""
+        }
+      },
+      "title_needs": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Needs",
+          "placeholder": ""
+        }
+      },
+      "text_needs": {
+        "type": "Text",
+        "config": {
+          "label": "Text_Needs",
+          "placeholder": ""
+        }
+      },
+      "title_question": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Question",
+          "placeholder": ""
+        }
+      },
+      "title_questions": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Questions",
+          "placeholder": ""
+        }
+      },
+      "text_questions": {
+        "type": "Text",
+        "config": {
+          "label": "Text_Questions",
+          "placeholder": ""
+        }
+      },
+      "image_quote": {
+        "type": "Image",
+        "config": {
+          "label": "Image_Quote",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "quote_text": {
+        "type": "Text",
+        "config": {
+          "label": "Quote_Text",
+          "placeholder": ""
+        }
+      },
+      "quote_autor": {
+        "type": "Text",
+        "config": {
+          "label": "Quote_Autor",
+          "placeholder": ""
+        }
+      },
+      "quote_post": {
+        "type": "Text",
+        "config": {
+          "label": "Quote_Post",
+          "placeholder": ""
+        }
+      },
+      "title_news": {
+        "type": "Text",
+        "config": {
+          "label": "Title_News",
+          "placeholder": ""
+        }
+      },
+      "title_map": {
+        "type": "Text",
+        "config": {
+          "label": "Title_Map",
+          "placeholder": ""
+        }
+      },
+      "subtitle_map": {
+        "type": "Text",
+        "config": {
+          "label": "Subtitle_Map",
+          "placeholder": ""
+        }
+      },
+      "text_map": {
+        "type": "Text",
+        "config": {
+          "label": "Text_Map",
+          "placeholder": ""
+        }
+      },
+      "map": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Map"
+        }
+      },
+      "map_button": {
+        "type": "Group",
+        "config": {
+          "label": "Map_Button",
+          "repeat": true,
+          "fields": {
+            "map_button_text": {
+              "type": "Text",
+              "config": {
+                "label": "Map_Button_Text",
+                "placeholder": ""
+              }
+            },
+            "map_button_link": {
+              "type": "Link",
+              "config": {
+                "label": "Map_Button_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

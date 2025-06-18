@@ -1,0 +1,56 @@
+{
+  "format": "custom",
+  "id": "first_time",
+  "label": "First_Time",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background_Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "text": {
+        "type": "Text",
+        "config": {
+          "label": "Text",
+          "placeholder": ""
+        }
+      },
+      "questions": {
+        "type": "Group",
+        "config": {
+          "label": "Questions",
+          "repeat": true,
+          "fields": {
+            "question": {
+              "type": "Text",
+              "config": {
+                "label": "Question",
+                "placeholder": ""
+              }
+            },
+            "answer": {
+              "type": "Text",
+              "config": {
+                "label": "Answer",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

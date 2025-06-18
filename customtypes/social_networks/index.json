@@ -1,0 +1,46 @@
+{
+  "format": "custom",
+  "id": "social_networks",
+  "label": "Social_networks",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "social": {
+        "type": "Group",
+        "config": {
+          "label": "Social",
+          "repeat": true,
+          "fields": {
+            "social_ikon": {
+              "type": "Image",
+              "config": {
+                "label": "Social_Ikon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "social_text": {
+              "type": "Text",
+              "config": {
+                "label": "Social_Text",
+                "placeholder": ""
+              }
+            },
+            "social_link": {
+              "type": "Link",
+              "config": {
+                "label": "Social_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

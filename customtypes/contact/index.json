@@ -1,0 +1,158 @@
+{
+  "format": "custom",
+  "id": "contact",
+  "label": "Contact",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "adress": {
+        "type": "Text",
+        "config": {
+          "label": "Adress",
+          "placeholder": ""
+        }
+      },
+      "telephone_ikon": {
+        "type": "Image",
+        "config": {
+          "label": "Telephone_Ikon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "email_ikon": {
+        "type": "Image",
+        "config": {
+          "label": "Email_Ikon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "telegram_ikon": {
+        "type": "Image",
+        "config": {
+          "label": "Telegram_Ikon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "instagram_ikon": {
+        "type": "Image",
+        "config": {
+          "label": "Instagram_Ikon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "facebook_ikon": {
+        "type": "Image",
+        "config": {
+          "label": "Facebook_Ikon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "human": {
+        "type": "Group",
+        "config": {
+          "label": "Human",
+          "repeat": true,
+          "fields": {
+            "foto": {
+              "type": "Image",
+              "config": {
+                "label": "Foto",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "telephone": {
+              "type": "Text",
+              "config": {
+                "label": "Telephone",
+                "placeholder": ""
+              }
+            },
+            "telephone_link": {
+              "type": "Link",
+              "config": {
+                "label": "Telephone_link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "email": {
+              "type": "Text",
+              "config": {
+                "label": "Email",
+                "placeholder": ""
+              }
+            },
+            "email_link": {
+              "type": "Link",
+              "config": {
+                "label": "Email_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "telegram_link": {
+              "type": "Link",
+              "config": {
+                "label": "Telegram_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "instagram_link": {
+              "type": "Link",
+              "config": {
+                "label": "Instagram_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "facebook_link": {
+              "type": "Link",
+              "config": {
+                "label": "Facebook_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

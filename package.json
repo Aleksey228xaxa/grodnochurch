@@ -7,15 +7,40 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slicemachine": "start-slicemachine"
+    "slicemachine": "start-slicemachine",
+    "prisma:push": "prisma db push",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/rubik": "^5.2.5",
+    "@fullcalendar/daygrid": "^6.1.17",
+    "@fullcalendar/react": "^6.1.17",
+    "@fullcalendar/timegrid": "^6.1.17",
+    "@mui/icons-material": "^7.0.2",
+    "@mui/lab": "^7.0.0-beta.12",
+    "@mui/material": "^7.0.2",
+    "@mui/system": "^7.0.2",
+    "@prisma/client": "^6.6.0",
     "@prismicio/client": "^7.16.1",
+    "@prismicio/helpers": "^2.3.9",
     "@prismicio/next": "^2.0.0",
     "@prismicio/react": "^3.1.0",
+    "@radix-ui/react-slot": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.15.0",
+    "lucide-react": "^0.488.0",
     "next": "15.2.3",
+    "prisma": "^6.6.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.16.0",
+    "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -28,6 +53,6 @@
     "eslint-config-next": "15.2.3",
     "slice-machine-ui": "^2.14.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   }
 }

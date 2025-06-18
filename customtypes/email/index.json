@@ -1,0 +1,46 @@
+{
+  "format": "custom",
+  "id": "email",
+  "label": "Contacts",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "contact": {
+        "type": "Group",
+        "config": {
+          "label": "Contact",
+          "repeat": true,
+          "fields": {
+            "contact_ikon": {
+              "type": "Image",
+              "config": {
+                "label": "Contact_Ikon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "contact_text": {
+              "type": "Text",
+              "config": {
+                "label": "Contact_Text",
+                "placeholder": ""
+              }
+            },
+            "contact_links": {
+              "type": "Link",
+              "config": {
+                "label": "Contact_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "format": "custom",
+  "id": "payment_system",
+  "label": "Payment System",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "system": {
+        "type": "Group",
+        "config": {
+          "label": "System",
+          "repeat": true,
+          "fields": {
+            "payment_ikon": {
+              "type": "Image",
+              "config": {
+                "label": "Payment_Ikon",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "payment_link": {
+              "type": "Link",
+              "config": {
+                "label": "Payment_Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

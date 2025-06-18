@@ -1,0 +1,270 @@
+{
+  "format": "custom",
+  "id": "news_events",
+  "label": "News_Events",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "tilte": {
+        "type": "Text",
+        "config": {
+          "label": "Tilte",
+          "placeholder": ""
+        }
+      },
+      "events": {
+        "type": "Group",
+        "config": {
+          "label": "Events",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            },
+            "language": {
+              "type": "Boolean",
+              "config": {
+                "label": "Language",
+                "placeholder_false": "EN",
+                "placeholder_true": "RU",
+                "default_value": false
+              }
+            },
+            "format": {
+              "type": "Boolean",
+              "config": {
+                "label": "Format",
+                "placeholder_false": "Offline",
+                "placeholder_true": "Online",
+                "default_value": false
+              }
+            }
+          }
+        }
+      },
+      "conferences": {
+        "type": "Group",
+        "config": {
+          "label": "Conferences",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            },
+            "language": {
+              "type": "Boolean",
+              "config": {
+                "label": "Language",
+                "placeholder_false": "EN",
+                "placeholder_true": "RU",
+                "default_value": false
+              }
+            },
+            "format": {
+              "type": "Boolean",
+              "config": {
+                "label": "Format",
+                "placeholder_false": "Offline",
+                "placeholder_true": "Online",
+                "default_value": false
+              }
+            }
+          }
+        }
+      },
+      "training": {
+        "type": "Group",
+        "config": {
+          "label": "Training",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            },
+            "language": {
+              "type": "Boolean",
+              "config": {
+                "label": "Language",
+                "placeholder_false": "EN",
+                "placeholder_true": "RU",
+                "default_value": false
+              }
+            },
+            "format": {
+              "type": "Boolean",
+              "config": {
+                "label": "Format",
+                "placeholder_false": "Offline",
+                "placeholder_true": "Online",
+                "default_value": false
+              }
+            }
+          }
+        }
+      },
+      "happenings": {
+        "type": "Group",
+        "config": {
+          "label": "Happenings",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            },
+            "language": {
+              "type": "Boolean",
+              "config": {
+                "label": "Language",
+                "placeholder_false": "EN",
+                "placeholder_true": "RU",
+                "default_value": false
+              }
+            },
+            "format": {
+              "type": "Boolean",
+              "config": {
+                "label": "Format",
+                "placeholder_false": "Offline",
+                "placeholder_true": "Online",
+                "default_value": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

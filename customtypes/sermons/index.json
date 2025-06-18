@@ -1,0 +1,53 @@
+{
+  "format": "custom",
+  "id": "sermons",
+  "label": "Sermons",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background_Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "text": {
+        "type": "Text",
+        "config": {
+          "label": "Text",
+          "placeholder": ""
+        }
+      },
+      "video_galery": {
+        "type": "Group",
+        "config": {
+          "label": "Video_Galery",
+          "repeat": true,
+          "fields": {
+            "video_url": {
+              "type": "Link",
+              "config": {
+                "label": "Video_Url",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

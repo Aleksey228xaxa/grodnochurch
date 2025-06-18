@@ -8,5 +8,5 @@ if (!apiUrl) {
 }
 
 export const prismicClient = prismic.createClient(apiUrl, {
-  accessToken: accessToken || undefined, // Если токен не задан, передаем undefined
+  accessToken: accessToken || undefined, 
 });

@@ -1,0 +1,63 @@
+{
+  "format": "custom",
+  "id": "questions_answer",
+  "label": "Questions_Answer",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "block": {
+        "type": "Group",
+        "config": {
+          "label": "Block",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

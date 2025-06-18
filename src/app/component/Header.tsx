@@ -1,10 +1,12 @@
-import { createClient } from "@/prismicio";
-
+import Menu from "./Menu/Menu";
+import MenuWrapper from "./MenuTwo/Menu_two_server";
 
 export default async function Header() {
 
-    const client = createClient();
-    const settings = await client.getSingle("settings");
-
-    return <header>{settings.data.site_text}</header>
+  return (
+    <header>
+        <Menu/>
+        <MenuWrapper/>
+    </header>
+  );
 }

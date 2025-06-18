@@ -1,0 +1,57 @@
+{
+  "format": "custom",
+  "id": "history",
+  "label": "History",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background_Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "block": {
+        "type": "Group",
+        "config": {
+          "label": "Block",
+          "repeat": true,
+          "fields": {
+            "data": {
+              "type": "Text",
+              "config": {
+                "label": "Data",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

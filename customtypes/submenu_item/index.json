@@ -1,0 +1,47 @@
+{
+  "format": "custom",
+  "id": "submenu_item",
+  "label": "submenu_item",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "menu_items": {
+        "type": "Group",
+        "config": {
+          "label": "Menu_items",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "url": {
+              "type": "Link",
+              "config": {
+                "label": "URL",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "isclickable": {
+              "type": "Boolean",
+              "config": {
+                "label": "isClickable",
+                "placeholder_false": "false",
+                "placeholder_true": "true",
+                "default_value": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

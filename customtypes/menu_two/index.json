@@ -1,0 +1,55 @@
+{
+  "format": "custom",
+  "id": "menu_two",
+  "label": "Menu_Two",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "menu_item": {
+        "type": "Group",
+        "config": {
+          "label": "Menu_Item",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "url": {
+              "type": "Link",
+              "config": {
+                "label": "URL",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "isclickable": {
+              "type": "Boolean",
+              "config": {
+                "label": "isClickable",
+                "placeholder_false": "false",
+                "placeholder_true": "true",
+                "default_value": false
+              }
+            },
+            "submenu": {
+              "type": "Link",
+              "config": {
+                "label": "Submenu",
+                "select": "document",
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

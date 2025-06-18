@@ -5,6 +5,2660 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
+ * Content for Calendar documents
+ */
+interface CalendarDocumentData {
+  /**
+   * Background_Image field in *Calendar*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Calendar*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Calendar document from Prismic
+ *
+ * - **API ID**: `calendar`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CalendarDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CalendarDocumentData>,
+    "calendar",
+    Lang
+  >;
+
+/**
+ * Item in *Church_Values → Cards*
+ */
+export interface ChurchValuesDocumentDataCardsItem {
+  /**
+   * TextAboutUs field in *Church_Values → Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.cards[].textaboutus
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  textaboutus: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Church_Values → Dies*
+ */
+export interface ChurchValuesDocumentDataDiesItem {
+  /**
+   * Text field in *Church_Values → Dies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.dies[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Church_Values → Image_Galery*
+ */
+export interface ChurchValuesDocumentDataImageGaleryItem {
+  /**
+   * Image field in *Church_Values → Image_Galery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.image_galery[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Church_Values documents
+ */
+interface ChurchValuesDocumentData {
+  /**
+   * Background_Image field in *Church_Values*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * TitleAboutUs field in *Church_Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.titleaboutus
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titleaboutus: prismic.KeyTextField;
+
+  /**
+   * Cards field in *Church_Values*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.cards[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  cards: prismic.GroupField<Simplify<ChurchValuesDocumentDataCardsItem>>;
+
+  /**
+   * Video field in *Church_Values*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+
+  /**
+   * TitleOurFaith field in *Church_Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.titleourfaith
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titleourfaith: prismic.KeyTextField;
+
+  /**
+   * Dies field in *Church_Values*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.dies[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  dies: prismic.GroupField<Simplify<ChurchValuesDocumentDataDiesItem>>;
+
+  /**
+   * TitleForWhat field in *Church_Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.titleforwhat
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titleforwhat: prismic.KeyTextField;
+
+  /**
+   * TextForWhat field in *Church_Values*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.textforwhat
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  textforwhat: prismic.RichTextField;
+
+  /**
+   * Image_Galery field in *Church_Values*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.image_galery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  image_galery: prismic.GroupField<
+    Simplify<ChurchValuesDocumentDataImageGaleryItem>
+  >;
+
+  /**
+   * Footer field in *Church_Values*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_values.footer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  footer: prismic.KeyTextField;
+}
+
+/**
+ * Church_Values document from Prismic
+ *
+ * - **API ID**: `church_values`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ChurchValuesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ChurchValuesDocumentData>,
+    "church_values",
+    Lang
+  >;
+
+/**
+ * Item in *Contact → Human*
+ */
+export interface ContactDocumentDataHumanItem {
+  /**
+   * Foto field in *Contact → Human*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].foto
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  foto: prismic.ImageField<never>;
+
+  /**
+   * Name field in *Contact → Human*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Telephone field in *Contact → Human*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].telephone
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  telephone: prismic.KeyTextField;
+
+  /**
+   * Telephone_link field in *Contact → Human*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].telephone_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  telephone_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Email field in *Contact → Human*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].email
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email: prismic.KeyTextField;
+
+  /**
+   * Email_Link field in *Contact → Human*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].email_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  email_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Telegram_Link field in *Contact → Human*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].telegram_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  telegram_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Instagram_Link field in *Contact → Human*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].instagram_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  instagram_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facebook_Link field in *Contact → Human*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[].facebook_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  facebook_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Contact documents
+ */
+interface ContactDocumentData {
+  /**
+   * Title field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Adress field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.adress
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  adress: prismic.KeyTextField;
+
+  /**
+   * Telephone_Ikon field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.telephone_ikon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  telephone_ikon: prismic.ImageField<never>;
+
+  /**
+   * Email_Ikon field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.email_ikon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  email_ikon: prismic.ImageField<never>;
+
+  /**
+   * Telegram_Ikon field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.telegram_ikon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  telegram_ikon: prismic.ImageField<never>;
+
+  /**
+   * Instagram_Ikon field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.instagram_ikon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  instagram_ikon: prismic.ImageField<never>;
+
+  /**
+   * Facebook_Ikon field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.facebook_ikon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  facebook_ikon: prismic.ImageField<never>;
+
+  /**
+   * Human field in *Contact*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.human[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  human: prismic.GroupField<Simplify<ContactDocumentDataHumanItem>>;
+}
+
+/**
+ * Contact document from Prismic
+ *
+ * - **API ID**: `contact`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ContactDocumentData>,
+    "contact",
+    Lang
+  >;
+
+/**
+ * Item in *Contacts → Contact*
+ */
+export interface EmailDocumentDataContactItem {
+  /**
+   * Contact_Ikon field in *Contacts → Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: email.contact[].contact_ikon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  contact_ikon: prismic.ImageField<never>;
+
+  /**
+   * Contact_Text field in *Contacts → Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: email.contact[].contact_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  contact_text: prismic.KeyTextField;
+
+  /**
+   * Contact_Link field in *Contacts → Contact*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: email.contact[].contact_links
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  contact_links: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Contacts documents
+ */
+interface EmailDocumentData {
+  /**
+   * Contact field in *Contacts*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: email.contact[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contact: prismic.GroupField<Simplify<EmailDocumentDataContactItem>>;
+}
+
+/**
+ * Contacts document from Prismic
+ *
+ * - **API ID**: `email`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EmailDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<EmailDocumentData>, "email", Lang>;
+
+/**
+ * Item in *Evangelism → Images*
+ */
+export interface EvangelismDocumentDataImagesItem {
+  /**
+   * Image field in *Evangelism → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: evangelism.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Evangelism documents
+ */
+interface EvangelismDocumentData {
+  /**
+   * Background_Image field in *Evangelism*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: evangelism.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Evangelism*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: evangelism.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Evangelism*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: evangelism.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *Evangelism*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: evangelism.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<EvangelismDocumentDataImagesItem>>;
+}
+
+/**
+ * Evangelism document from Prismic
+ *
+ * - **API ID**: `evangelism`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EvangelismDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<EvangelismDocumentData>,
+    "evangelism",
+    Lang
+  >;
+
+/**
+ * Item in *First_Time → Questions*
+ */
+export interface FirstTimeDocumentDataQuestionsItem {
+  /**
+   * Question field in *First_Time → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.questions[].question
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  question: prismic.KeyTextField;
+
+  /**
+   * Answer field in *First_Time → Questions*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.questions[].answer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  answer: prismic.KeyTextField;
+}
+
+/**
+ * Content for First_Time documents
+ */
+interface FirstTimeDocumentData {
+  /**
+   * Background_Image field in *First_Time*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *First_Time*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *First_Time*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Questions field in *First_Time*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_time.questions[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  questions: prismic.GroupField<Simplify<FirstTimeDocumentDataQuestionsItem>>;
+}
+
+/**
+ * First_Time document from Prismic
+ *
+ * - **API ID**: `first_time`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FirstTimeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FirstTimeDocumentData>,
+    "first_time",
+    Lang
+  >;
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Footer_Text field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footer_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  footer_text: prismic.RichTextField;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+/**
+ * Item in *For_Children → Images*
+ */
+export interface ForChildrenDocumentDataImagesItem {
+  /**
+   * Image field in *For_Children → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: for_children.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for For_Children documents
+ */
+interface ForChildrenDocumentData {
+  /**
+   * Background_Image field in *For_Children*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: for_children.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *For_Children*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: for_children.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *For_Children*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: for_children.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *For_Children*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: for_children.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<ForChildrenDocumentDataImagesItem>>;
+}
+
+/**
+ * For_Children document from Prismic
+ *
+ * - **API ID**: `for_children`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ForChildrenDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ForChildrenDocumentData>,
+    "for_children",
+    Lang
+  >;
+
+/**
+ * Item in *Foreign_Students → Images*
+ */
+export interface ForeignStudentsDocumentDataImagesItem {
+  /**
+   * Image field in *Foreign_Students → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foreign_students.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Foreign_Students documents
+ */
+interface ForeignStudentsDocumentData {
+  /**
+   * Background_Image field in *Foreign_Students*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foreign_students.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Foreign_Students*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foreign_students.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Foreign_Students*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foreign_students.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *Foreign_Students*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foreign_students.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<ForeignStudentsDocumentDataImagesItem>>;
+}
+
+/**
+ * Foreign_Students document from Prismic
+ *
+ * - **API ID**: `foreign_students`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ForeignStudentsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ForeignStudentsDocumentData>,
+    "foreign_students",
+    Lang
+  >;
+
+/**
+ * Item in *General → Images*
+ */
+export interface GeneralDocumentDataImagesItem {
+  /**
+   * Image field in *General → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for General documents
+ */
+interface GeneralDocumentData {
+  /**
+   * Background_Image field in *General*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *General*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *General*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *General*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: general.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<GeneralDocumentDataImagesItem>>;
+}
+
+/**
+ * General document from Prismic
+ *
+ * - **API ID**: `general`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GeneralDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<GeneralDocumentData>,
+    "general",
+    Lang
+  >;
+
+/**
+ * Item in *History → Block*
+ */
+export interface HistoryDocumentDataBlockItem {
+  /**
+   * Data field in *History → Block*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.block[].data
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  data: prismic.KeyTextField;
+
+  /**
+   * Image field in *History → Block*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.block[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *History → Block*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.block[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+}
+
+/**
+ * Content for History documents
+ */
+interface HistoryDocumentData {
+  /**
+   * Background_Image field in *History*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *History*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Block field in *History*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.block[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  block: prismic.GroupField<Simplify<HistoryDocumentDataBlockItem>>;
+}
+
+/**
+ * History document from Prismic
+ *
+ * - **API ID**: `history`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HistoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HistoryDocumentData>,
+    "history",
+    Lang
+  >;
+
+/**
+ * Item in *History_People → Blocks*
+ */
+export interface HistoryPeopleDocumentDataBlocksItem {
+  /**
+   * Title field in *History_People → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *History_People → Blocks*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *History_People → Blocks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *History_People → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *History_People → Blocks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+}
+
+/**
+ * Content for History_People documents
+ */
+interface HistoryPeopleDocumentData {
+  /**
+   * Title field in *History_People*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Blocks field in *History_People*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history_people.blocks[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  blocks: prismic.GroupField<Simplify<HistoryPeopleDocumentDataBlocksItem>>;
+}
+
+/**
+ * History_People document from Prismic
+ *
+ * - **API ID**: `history_people`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HistoryPeopleDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HistoryPeopleDocumentData>,
+    "history_people",
+    Lang
+  >;
+
+/**
+ * Item in *Home page → Image_Galery*
+ */
+export interface HomePageDocumentDataImageGaleryItem {
+  /**
+   * Image field in *Home page → Image_Galery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.image_galery[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Home page → Video_Galery*
+ */
+export interface HomePageDocumentDataVideoGaleryItem {
+  /**
+   * video_url field in *Home page → Video_Galery*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.video_galery[].video_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *Home page → Map_Button*
+ */
+export interface HomePageDocumentDataMapButtonItem {
+  /**
+   * Map_Button_Text field in *Home page → Map_Button*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.map_button[].map_button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  map_button_text: prismic.KeyTextField;
+
+  /**
+   * Map_Button_Link field in *Home page → Map_Button*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.map_button[].map_button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  map_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Home page documents
+ */
+interface HomePageDocumentData {
+  /**
+   * Background_Image field in *Home page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Text field in *Home page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * TitleAboutUS field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.titleaboutus
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titleaboutus: prismic.KeyTextField;
+
+  /**
+   * TextAboutUs field in *Home page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.textaboutus
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  textaboutus: prismic.RichTextField;
+
+  /**
+   * Image_Galery field in *Home page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.image_galery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  image_galery: prismic.GroupField<
+    Simplify<HomePageDocumentDataImageGaleryItem>
+  >;
+
+  /**
+   * Title_First_Time field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_first_time
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_first_time: prismic.KeyTextField;
+
+  /**
+   * Text_First_Time field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text_first_time
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_first_time: prismic.KeyTextField;
+
+  /**
+   * Title_Sermons field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_sermons
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_sermons: prismic.KeyTextField;
+
+  /**
+   * Text_Sermons field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text_sermons
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_sermons: prismic.KeyTextField;
+
+  /**
+   * Video_Galery field in *Home page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.video_galery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  video_galery: prismic.GroupField<
+    Simplify<HomePageDocumentDataVideoGaleryItem>
+  >;
+
+  /**
+   * Title_Kalendar field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_kalendar
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_kalendar: prismic.KeyTextField;
+
+  /**
+   * Title_Needs field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_needs
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_needs: prismic.KeyTextField;
+
+  /**
+   * Text_Needs field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text_needs
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_needs: prismic.KeyTextField;
+
+  /**
+   * Title_Question field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_question
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_question: prismic.KeyTextField;
+
+  /**
+   * Title_Questions field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_questions
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_questions: prismic.KeyTextField;
+
+  /**
+   * Text_Questions field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text_questions
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_questions: prismic.KeyTextField;
+
+  /**
+   * Image_Quote field in *Home page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.image_quote
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_quote: prismic.ImageField<never>;
+
+  /**
+   * Quote_Text field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.quote_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  quote_text: prismic.KeyTextField;
+
+  /**
+   * Quote_Autor field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.quote_autor
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  quote_autor: prismic.KeyTextField;
+
+  /**
+   * Quote_Post field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.quote_post
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  quote_post: prismic.KeyTextField;
+
+  /**
+   * Title_News field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_news
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_news: prismic.KeyTextField;
+
+  /**
+   * Title_Map field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.title_map
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title_map: prismic.KeyTextField;
+
+  /**
+   * Subtitle_Map field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.subtitle_map
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle_map: prismic.KeyTextField;
+
+  /**
+   * Text_Map field in *Home page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.text_map
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_map: prismic.KeyTextField;
+
+  /**
+   * Map field in *Home page*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.map
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  map: prismic.GeoPointField;
+
+  /**
+   * Map_Button field in *Home page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page.map_button[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  map_button: prismic.GroupField<Simplify<HomePageDocumentDataMapButtonItem>>;
+}
+
+/**
+ * Home page document from Prismic
+ *
+ * - **API ID**: `home_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomePageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HomePageDocumentData>,
+    "home_page",
+    Lang
+  >;
+
+/**
+ * Item in *Interchurch_Prayers → Images*
+ */
+export interface InterchurchPrayersDocumentDataImagesItem {
+  /**
+   * Image field in *Interchurch_Prayers → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: interchurch_prayers.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Interchurch_Prayers documents
+ */
+interface InterchurchPrayersDocumentData {
+  /**
+   * Background_Image field in *Interchurch_Prayers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: interchurch_prayers.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Interchurch_Prayers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: interchurch_prayers.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Interchurch_Prayers*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: interchurch_prayers.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *Interchurch_Prayers*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: interchurch_prayers.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<
+    Simplify<InterchurchPrayersDocumentDataImagesItem>
+  >;
+}
+
+/**
+ * Interchurch_Prayers document from Prismic
+ *
+ * - **API ID**: `interchurch_prayers`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type InterchurchPrayersDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<InterchurchPrayersDocumentData>,
+    "interchurch_prayers",
+    Lang
+  >;
+
+/**
+ * Item in *Menu_One → Logo*
+ */
+export interface MenuOneDocumentDataLogoItem {
+  /**
+   * Logo_img field in *Menu_One → Logo*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_one.logo[].logo_img
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo_img: prismic.ImageField<never>;
+
+  /**
+   * Logo_Link field in *Menu_One → Logo*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_one.logo[].logo_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  logo_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Menu_One documents
+ */
+interface MenuOneDocumentData {
+  /**
+   * Slogan field in *Menu_One*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_one.slogan
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  slogan: prismic.RichTextField;
+
+  /**
+   * Logo field in *Menu_One*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_one.logo[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  logo: prismic.GroupField<Simplify<MenuOneDocumentDataLogoItem>>;
+
+  /**
+   * Adress field in *Menu_One*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_one.adress
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  adress: prismic.RichTextField;
+}
+
+/**
+ * Menu_One document from Prismic
+ *
+ * - **API ID**: `menu_one`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuOneDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MenuOneDocumentData>,
+    "menu_one",
+    Lang
+  >;
+
+/**
+ * Item in *Menu_Two → Menu_Item*
+ */
+export interface MenuTwoDocumentDataMenuItemItem {
+  /**
+   * Title field in *Menu_Two → Menu_Item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_two.menu_item[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * URL field in *Menu_Two → Menu_Item*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_two.menu_item[].url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * isClickable field in *Menu_Two → Menu_Item*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: menu_two.menu_item[].isclickable
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isclickable: prismic.BooleanField;
+
+  /**
+   * Submenu field in *Menu_Two → Menu_Item*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_two.menu_item[].submenu
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  submenu: prismic.ContentRelationshipField;
+}
+
+/**
+ * Content for Menu_Two documents
+ */
+interface MenuTwoDocumentData {
+  /**
+   * Menu_Item field in *Menu_Two*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_two.menu_item[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_item: prismic.GroupField<Simplify<MenuTwoDocumentDataMenuItemItem>>;
+}
+
+/**
+ * Menu_Two document from Prismic
+ *
+ * - **API ID**: `menu_two`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuTwoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MenuTwoDocumentData>,
+    "menu_two",
+    Lang
+  >;
+
+/**
+ * Item in *Music_Ministry → Images*
+ */
+export interface MusicMinistryDocumentDataImagesItem {
+  /**
+   * Image field in *Music_Ministry → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: music_ministry.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Music_Ministry documents
+ */
+interface MusicMinistryDocumentData {
+  /**
+   * Background_Image field in *Music_Ministry*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: music_ministry.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Music_Ministry*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: music_ministry.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Music_Ministry*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: music_ministry.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *Music_Ministry*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: music_ministry.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<MusicMinistryDocumentDataImagesItem>>;
+}
+
+/**
+ * Music_Ministry document from Prismic
+ *
+ * - **API ID**: `music_ministry`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MusicMinistryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MusicMinistryDocumentData>,
+    "music_ministry",
+    Lang
+  >;
+
+/**
+ * Item in *News_Events → Events*
+ */
+export interface NewsEventsDocumentDataEventsItem {
+  /**
+   * Title field in *News_Events → Events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *News_Events → Events*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *News_Events → Events*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *News_Events → Events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *News_Events → Events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+
+  /**
+   * Language field in *News_Events → Events*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.events[].language
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  language: prismic.BooleanField;
+
+  /**
+   * Format field in *News_Events → Events*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.events[].format
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  format: prismic.BooleanField;
+}
+
+/**
+ * Item in *News_Events → Conferences*
+ */
+export interface NewsEventsDocumentDataConferencesItem {
+  /**
+   * Title field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+
+  /**
+   * Language field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.conferences[].language
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  language: prismic.BooleanField;
+
+  /**
+   * Format field in *News_Events → Conferences*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.conferences[].format
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  format: prismic.BooleanField;
+}
+
+/**
+ * Item in *News_Events → Training*
+ */
+export interface NewsEventsDocumentDataTrainingItem {
+  /**
+   * Title field in *News_Events → Training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *News_Events → Training*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *News_Events → Training*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *News_Events → Training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *News_Events → Training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+
+  /**
+   * Language field in *News_Events → Training*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.training[].language
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  language: prismic.BooleanField;
+
+  /**
+   * Format field in *News_Events → Training*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.training[].format
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  format: prismic.BooleanField;
+}
+
+/**
+ * Item in *News_Events → Happenings*
+ */
+export interface NewsEventsDocumentDataHappeningsItem {
+  /**
+   * Title field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+
+  /**
+   * Language field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.happenings[].language
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  language: prismic.BooleanField;
+
+  /**
+   * Format field in *News_Events → Happenings*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: news_events.happenings[].format
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  format: prismic.BooleanField;
+}
+
+/**
+ * Content for News_Events documents
+ */
+interface NewsEventsDocumentData {
+  /**
+   * Tilte field in *News_Events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.tilte
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tilte: prismic.KeyTextField;
+
+  /**
+   * Events field in *News_Events*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.events[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  events: prismic.GroupField<Simplify<NewsEventsDocumentDataEventsItem>>;
+
+  /**
+   * Conferences field in *News_Events*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.conferences[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  conferences: prismic.GroupField<
+    Simplify<NewsEventsDocumentDataConferencesItem>
+  >;
+
+  /**
+   * Training field in *News_Events*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.training[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  training: prismic.GroupField<Simplify<NewsEventsDocumentDataTrainingItem>>;
+
+  /**
+   * Happenings field in *News_Events*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_events.happenings[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  happenings: prismic.GroupField<
+    Simplify<NewsEventsDocumentDataHappeningsItem>
+  >;
+}
+
+/**
+ * News_Events document from Prismic
+ *
+ * - **API ID**: `news_events`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NewsEventsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NewsEventsDocumentData>,
+    "news_events",
+    Lang
+  >;
+
+/**
+ * Item in *Pastoral_Team → List*
+ */
+export interface PastoralTeamsDocumentDataListItem {
+  /**
+   * Image field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Name field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Job field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].job
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  job: prismic.KeyTextField;
+
+  /**
+   * Quote field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].quote
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  quote: prismic.RichTextField;
+
+  /**
+   * Main_Info field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].main_info
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  main_info: prismic.RichTextField;
+
+  /**
+   * Biography field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].biography
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  biography: prismic.RichTextField;
+
+  /**
+   * Family field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].family
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  family: prismic.RichTextField;
+
+  /**
+   * Hobby field in *Pastoral_Team → List*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[].hobby
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  hobby: prismic.RichTextField;
+}
+
+/**
+ * Content for Pastoral_Team documents
+ */
+interface PastoralTeamsDocumentData {
+  /**
+   * Background_Image field in *Pastoral_Team*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Pastoral_Team*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * List field in *Pastoral_Team*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pastoral_teams.list[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  list: prismic.GroupField<Simplify<PastoralTeamsDocumentDataListItem>>;
+}
+
+/**
+ * Pastoral_Team document from Prismic
+ *
+ * - **API ID**: `pastoral_teams`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PastoralTeamsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PastoralTeamsDocumentData>,
+    "pastoral_teams",
+    Lang
+  >;
+
+/**
+ * Item in *Payment System → System*
+ */
+export interface PaymentSystemDocumentDataSystemItem {
+  /**
+   * Payment_Ikon field in *Payment System → System*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: payment_system.system[].payment_ikon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  payment_ikon: prismic.ImageField<never>;
+
+  /**
+   * Payment_Link field in *Payment System → System*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: payment_system.system[].payment_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  payment_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Payment System documents
+ */
+interface PaymentSystemDocumentData {
+  /**
+   * System field in *Payment System*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: payment_system.system[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  system: prismic.GroupField<Simplify<PaymentSystemDocumentDataSystemItem>>;
+}
+
+/**
+ * Payment System document from Prismic
+ *
+ * - **API ID**: `payment_system`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PaymentSystemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PaymentSystemDocumentData>,
+    "payment_system",
+    Lang
+  >;
+
+/**
+ * Item in *Questions_Answer → Block*
+ */
+export interface QuestionsAnswerDocumentDataBlockItem {
+  /**
+   * Title field in *Questions_Answer → Block*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *Questions_Answer → Block*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[].date
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  date: prismic.TimestampField;
+
+  /**
+   * Image field in *Questions_Answer → Block*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text field in *Questions_Answer → Block*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[].text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Tag field in *Questions_Answer → Block*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[].tag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag: prismic.KeyTextField;
+}
+
+/**
+ * Content for Questions_Answer documents
+ */
+interface QuestionsAnswerDocumentData {
+  /**
+   * Title field in *Questions_Answer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Block field in *Questions_Answer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: questions_answer.block[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  block: prismic.GroupField<Simplify<QuestionsAnswerDocumentDataBlockItem>>;
+}
+
+/**
+ * Questions_Answer document from Prismic
+ *
+ * - **API ID**: `questions_answer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type QuestionsAnswerDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<QuestionsAnswerDocumentData>,
+    "questions_answer",
+    Lang
+  >;
+
+/**
+ * Item in *Sermons → Video_Galery*
+ */
+export interface SermonsDocumentDataVideoGaleryItem {
+  /**
+   * Video_Url field in *Sermons → Video_Galery*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.video_galery[].video_url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Sermons documents
+ */
+interface SermonsDocumentData {
+  /**
+   * Background_Image field in *Sermons*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Sermons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Sermons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Video_Galery field in *Sermons*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.video_galery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  video_galery: prismic.GroupField<
+    Simplify<SermonsDocumentDataVideoGaleryItem>
+  >;
+}
+
+/**
+ * Sermons document from Prismic
+ *
+ * - **API ID**: `sermons`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SermonsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SermonsDocumentData>,
+    "sermons",
+    Lang
+  >;
+
+/**
  * Item in *Settings → Navigation*
  */
 export interface SettingsDocumentDataNavigationItem {
@@ -32,7 +2686,7 @@ export interface SettingsDocumentDataNavigationItem {
 /**
  * Content for Settings documents
  */
-export interface SettingsDocumentData {
+interface SettingsDocumentData {
   /**
    * Site text field in *Settings*
    *
@@ -94,7 +2748,397 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = SettingsDocument;
+/**
+ * Item in *Social_networks → Social*
+ */
+export interface SocialNetworksDocumentDataSocialItem {
+  /**
+   * Social_Ikon field in *Social_networks → Social*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_networks.social[].social_ikon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  social_ikon: prismic.ImageField<never>;
+
+  /**
+   * Social_Text field in *Social_networks → Social*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_networks.social[].social_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  social_text: prismic.KeyTextField;
+
+  /**
+   * Social_Link field in *Social_networks → Social*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_networks.social[].social_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  social_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Social_networks documents
+ */
+interface SocialNetworksDocumentData {
+  /**
+   * Social field in *Social_networks*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_networks.social[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social: prismic.GroupField<Simplify<SocialNetworksDocumentDataSocialItem>>;
+}
+
+/**
+ * Social_networks document from Prismic
+ *
+ * - **API ID**: `social_networks`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialNetworksDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SocialNetworksDocumentData>,
+    "social_networks",
+    Lang
+  >;
+
+/**
+ * Item in *submenu_item → Menu_items*
+ */
+export interface SubmenuItemDocumentDataMenuItemsItem {
+  /**
+   * Title field in *submenu_item → Menu_items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item.menu_items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * URL field in *submenu_item → Menu_items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item.menu_items[].url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * isClickable field in *submenu_item → Menu_items*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: submenu_item.menu_items[].isclickable
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isclickable: prismic.BooleanField;
+}
+
+/**
+ * Content for submenu_item documents
+ */
+interface SubmenuItemDocumentData {
+  /**
+   * Menu_items field in *submenu_item*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item.menu_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_items: prismic.GroupField<
+    Simplify<SubmenuItemDocumentDataMenuItemsItem>
+  >;
+}
+
+/**
+ * submenu_item document from Prismic
+ *
+ * - **API ID**: `submenu_item`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubmenuItemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SubmenuItemDocumentData>,
+    "submenu_item",
+    Lang
+  >;
+
+/**
+ * Item in *submenu_item_two → Menu_items*
+ */
+export interface SubmenuItemTwoDocumentDataMenuItemsItem {
+  /**
+   * Title field in *submenu_item_two → Menu_items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item_two.menu_items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * URL field in *submenu_item_two → Menu_items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item_two.menu_items[].url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * isClickable field in *submenu_item_two → Menu_items*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: submenu_item_two.menu_items[].isclickable
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isclickable: prismic.BooleanField;
+}
+
+/**
+ * Content for submenu_item_two documents
+ */
+interface SubmenuItemTwoDocumentData {
+  /**
+   * Menu_items field in *submenu_item_two*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_item_two.menu_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_items: prismic.GroupField<
+    Simplify<SubmenuItemTwoDocumentDataMenuItemsItem>
+  >;
+}
+
+/**
+ * submenu_item_two document from Prismic
+ *
+ * - **API ID**: `submenu_item_two`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubmenuItemTwoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SubmenuItemTwoDocumentData>,
+    "submenu_item_two",
+    Lang
+  >;
+
+/**
+ * Item in *submenu_items_three → Menu_Items*
+ */
+export interface SubmenuItemsThreeDocumentDataMenuItemsItem {}
+
+/**
+ * Content for submenu_items_three documents
+ */
+interface SubmenuItemsThreeDocumentData {
+  /**
+   * Menu_Items field in *submenu_items_three*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_items_three.menu_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  menu_items: prismic.GroupField<
+    Simplify<SubmenuItemsThreeDocumentDataMenuItemsItem>
+  >;
+
+  /**
+   * Title field in *submenu_items_three*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_items_three.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * URL field in *submenu_items_three*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: submenu_items_three.url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  url: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * isClickable field in *submenu_items_three*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: submenu_items_three.isclickable
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isclickable: prismic.BooleanField;
+}
+
+/**
+ * submenu_items_three document from Prismic
+ *
+ * - **API ID**: `submenu_items_three`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubmenuItemsThreeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SubmenuItemsThreeDocumentData>,
+    "submenu_items_three",
+    Lang
+  >;
+
+/**
+ * Item in *Youth → Images*
+ */
+export interface YouthDocumentDataImagesItem {
+  /**
+   * Image field in *Youth → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: youth.images[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Youth documents
+ */
+interface YouthDocumentData {
+  /**
+   * Background_Image field in *Youth*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: youth.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Youth*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: youth.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text field in *Youth*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: youth.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Images field in *Youth*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: youth.images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  images: prismic.GroupField<Simplify<YouthDocumentDataImagesItem>>;
+}
+
+/**
+ * Youth document from Prismic
+ *
+ * - **API ID**: `youth`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type YouthDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<YouthDocumentData>, "youth", Lang>;
+
+export type AllDocumentTypes =
+  | CalendarDocument
+  | ChurchValuesDocument
+  | ContactDocument
+  | EmailDocument
+  | EvangelismDocument
+  | FirstTimeDocument
+  | FooterDocument
+  | ForChildrenDocument
+  | ForeignStudentsDocument
+  | GeneralDocument
+  | HistoryDocument
+  | HistoryPeopleDocument
+  | HomePageDocument
+  | InterchurchPrayersDocument
+  | MenuOneDocument
+  | MenuTwoDocument
+  | MusicMinistryDocument
+  | NewsEventsDocument
+  | PastoralTeamsDocument
+  | PaymentSystemDocument
+  | QuestionsAnswerDocument
+  | SermonsDocument
+  | SettingsDocument
+  | SocialNetworksDocument
+  | SubmenuItemDocument
+  | SubmenuItemTwoDocument
+  | SubmenuItemsThreeDocument
+  | YouthDocument;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -117,9 +3161,95 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      CalendarDocument,
+      CalendarDocumentData,
+      ChurchValuesDocument,
+      ChurchValuesDocumentData,
+      ChurchValuesDocumentDataCardsItem,
+      ChurchValuesDocumentDataDiesItem,
+      ChurchValuesDocumentDataImageGaleryItem,
+      ContactDocument,
+      ContactDocumentData,
+      ContactDocumentDataHumanItem,
+      EmailDocument,
+      EmailDocumentData,
+      EmailDocumentDataContactItem,
+      EvangelismDocument,
+      EvangelismDocumentData,
+      EvangelismDocumentDataImagesItem,
+      FirstTimeDocument,
+      FirstTimeDocumentData,
+      FirstTimeDocumentDataQuestionsItem,
+      FooterDocument,
+      FooterDocumentData,
+      ForChildrenDocument,
+      ForChildrenDocumentData,
+      ForChildrenDocumentDataImagesItem,
+      ForeignStudentsDocument,
+      ForeignStudentsDocumentData,
+      ForeignStudentsDocumentDataImagesItem,
+      GeneralDocument,
+      GeneralDocumentData,
+      GeneralDocumentDataImagesItem,
+      HistoryDocument,
+      HistoryDocumentData,
+      HistoryDocumentDataBlockItem,
+      HistoryPeopleDocument,
+      HistoryPeopleDocumentData,
+      HistoryPeopleDocumentDataBlocksItem,
+      HomePageDocument,
+      HomePageDocumentData,
+      HomePageDocumentDataImageGaleryItem,
+      HomePageDocumentDataVideoGaleryItem,
+      HomePageDocumentDataMapButtonItem,
+      InterchurchPrayersDocument,
+      InterchurchPrayersDocumentData,
+      InterchurchPrayersDocumentDataImagesItem,
+      MenuOneDocument,
+      MenuOneDocumentData,
+      MenuOneDocumentDataLogoItem,
+      MenuTwoDocument,
+      MenuTwoDocumentData,
+      MenuTwoDocumentDataMenuItemItem,
+      MusicMinistryDocument,
+      MusicMinistryDocumentData,
+      MusicMinistryDocumentDataImagesItem,
+      NewsEventsDocument,
+      NewsEventsDocumentData,
+      NewsEventsDocumentDataEventsItem,
+      NewsEventsDocumentDataConferencesItem,
+      NewsEventsDocumentDataTrainingItem,
+      NewsEventsDocumentDataHappeningsItem,
+      PastoralTeamsDocument,
+      PastoralTeamsDocumentData,
+      PastoralTeamsDocumentDataListItem,
+      PaymentSystemDocument,
+      PaymentSystemDocumentData,
+      PaymentSystemDocumentDataSystemItem,
+      QuestionsAnswerDocument,
+      QuestionsAnswerDocumentData,
+      QuestionsAnswerDocumentDataBlockItem,
+      SermonsDocument,
+      SermonsDocumentData,
+      SermonsDocumentDataVideoGaleryItem,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      SocialNetworksDocument,
+      SocialNetworksDocumentData,
+      SocialNetworksDocumentDataSocialItem,
+      SubmenuItemDocument,
+      SubmenuItemDocumentData,
+      SubmenuItemDocumentDataMenuItemsItem,
+      SubmenuItemTwoDocument,
+      SubmenuItemTwoDocumentData,
+      SubmenuItemTwoDocumentDataMenuItemsItem,
+      SubmenuItemsThreeDocument,
+      SubmenuItemsThreeDocumentData,
+      SubmenuItemsThreeDocumentDataMenuItemsItem,
+      YouthDocument,
+      YouthDocumentData,
+      YouthDocumentDataImagesItem,
       AllDocumentTypes,
     };
   }

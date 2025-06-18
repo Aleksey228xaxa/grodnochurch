@@ -1,29 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { createClient } from "@/prismicio";
 import Header from "./component/Header";
+import Footer from "./component/Footer";
+import { Inter } from 'next/font/google';
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export async function  generateMetadata(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("settings");
+
   return {
     title: page.data.site_text || "nothing",
-    description:
-    page.data.meta_discription || "Lotus flowers",
+    description: page.data.meta_discription || "Lotus flowers",
     openGraph: {
-      images: [page.data.og_image.url || ""],
+      images: [page.data.og_image?.url || ""],
     },
   };
 }
@@ -34,13 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header/>
+    <html lang="en" className={inter.className}>
+      <body style={{ margin: 0, padding: 0, overflowX: 'hidden', width: '100%' }}>
+        <Header />
         {children}
-        <footer>footer1</footer>
+        <Footer />
       </body>
     </html>
   );

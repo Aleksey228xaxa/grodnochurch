@@ -1,0 +1,114 @@
+{
+  "format": "custom",
+  "id": "church_values",
+  "label": "Church_Values",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background_Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "titleaboutus": {
+        "type": "Text",
+        "config": {
+          "label": "TitleAboutUs",
+          "placeholder": ""
+        }
+      },
+      "cards": {
+        "type": "Group",
+        "config": {
+          "label": "Cards",
+          "repeat": true,
+          "fields": {
+            "textaboutus": {
+              "type": "Text",
+              "config": {
+                "label": "TextAboutUs",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "video": {
+        "type": "Link",
+        "config": {
+          "label": "Video",
+          "placeholder": "",
+          "select": "media",
+          "allowText": true
+        }
+      },
+      "titleourfaith": {
+        "type": "Text",
+        "config": {
+          "label": "TitleOurFaith",
+          "placeholder": ""
+        }
+      },
+      "dies": {
+        "type": "Group",
+        "config": {
+          "label": "Dies",
+          "repeat": true,
+          "fields": {
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "titleforwhat": {
+        "type": "Text",
+        "config": {
+          "label": "TitleForWhat",
+          "placeholder": ""
+        }
+      },
+      "textforwhat": {
+        "type": "StructuredText",
+        "config": {
+          "label": "TextForWhat",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "image_galery": {
+        "type": "Group",
+        "config": {
+          "label": "Image_Galery",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
+      "footer": {
+        "type": "Text",
+        "config": {
+          "label": "Footer",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

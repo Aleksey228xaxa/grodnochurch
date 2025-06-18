@@ -1,0 +1,63 @@
+{
+  "format": "custom",
+  "id": "history_people",
+  "label": "History_People",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "blocks": {
+        "type": "Group",
+        "config": {
+          "label": "Blocks",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Title",
+                "placeholder": ""
+              }
+            },
+            "date": {
+              "type": "Timestamp",
+              "config": {
+                "label": "Date",
+                "placeholder": ""
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "text": {
+              "type": "Text",
+              "config": {
+                "label": "Text",
+                "placeholder": ""
+              }
+            },
+            "tag": {
+              "type": "Text",
+              "config": {
+                "label": "Tag",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
