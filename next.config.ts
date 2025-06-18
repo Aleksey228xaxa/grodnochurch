@@ -13,13 +13,12 @@ const nextConfig = {
         hostname: 'img.youtube.com',
         port: '',
         pathname: '/vi/**',
-      },
+      }
     ],
   },
-  // сюда можно добавить другие опции, например:
-  experimental: {
-    appDir: true, // если используешь app router
-  },
+  // experimental: {
+  //   appDir: true,  // убрать или закомментировать
+  // }
 }
 
 module.exports = nextConfig;
