@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { AgreementCheckbox } from '../../Agreement/Agreement'
+import { sendMessage } from '@/app/actions/sendMessages'
 
 type Props = {
   textContent?: React.ReactNode
@@ -25,6 +26,7 @@ export function QuestionsFormClient({ textContent }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [cooldown, setCooldown] = useState(0)
   const [attempts, setAttempts] = useState(0)
+  const [emptyFieldError, setEmptyFieldError] = useState(false)
 
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -40,47 +42,34 @@ export function QuestionsFormClient({ textContent }: Props) {
     return () => clearInterval(timer)
   }, [cooldown])
 
-  const handleSubmit = async () => {
+  async function action(formData: FormData) {
+    const message = formData.get('message') as string
     if (!agreed) {
       setShowError(true)
       return
     }
-
     if (cooldown > 0) {
       setErrorOpen(true)
       return
     }
-
     if (!message.trim()) {
-      setErrorOpen(true)
+      setEmptyFieldError(true)
+      setShowError(true)
       return
     }
-
     setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: message.trim() }),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Ошибка при отправке')
-      }
-
+    const res = await sendMessage(message.trim())
+    if (res.error) {
+      setErrorOpen(true)
+    } else {
+      setSuccessOpen(true)
       setMessage('')
       setAgreed(false)
       setShowError(false)
-      setSuccessOpen(true)
       setAttempts((prev) => prev + 1)
       setCooldown(10 * (attempts + 1))
-    } catch (error) {
-      console.error('Ошибка:', error)
-      setErrorOpen(true)
-    } finally {
-      setIsSubmitting(false)
     }
+    setIsSubmitting(false)
   }
 
   return (
@@ -114,7 +103,7 @@ export function QuestionsFormClient({ textContent }: Props) {
         width="100%"
         onSubmit={(e) => {
           e.preventDefault()
-          handleSubmit()
+          action(new FormData(e.currentTarget))
         }}
       >
         <TextField
@@ -123,6 +112,7 @@ export function QuestionsFormClient({ textContent }: Props) {
           fullWidth
           multiline
           rows={1}
+          name="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           sx={inputStyle}
@@ -131,7 +121,7 @@ export function QuestionsFormClient({ textContent }: Props) {
         <AgreementCheckbox
           value={agreed}
           onChange={(val) => setAgreed(val)}
-          showError={showError}
+          showError={showError && !agreed}
           disabled={isSubmitting}
         />
         <Button
@@ -230,6 +220,41 @@ export function QuestionsFormClient({ textContent }: Props) {
               {cooldown > 0 
                 ? `Следующую отправку можно будет сделать через ${cooldown} сек.` 
                 : 'Пожалуйста, попробуйте отправить форму еще раз.'}
+            </Box>
+          </Box>
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={emptyFieldError}
+        autoHideDuration={6000}
+        onClose={() => setEmptyFieldError(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={() => setEmptyFieldError(false)} 
+          severity="error" 
+          sx={{ 
+            width: '100%',
+            backgroundColor: '#FDEDED',
+            color: '#D32F2F',
+            '& .MuiAlert-icon': {
+              color: '#D32F2F',
+            },
+            '& .MuiAlert-message': {
+              fontSize: '16px',
+              fontFamily: 'Inter, sans-serif',
+            },
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            borderRadius: '12px',
+          }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+            <Box sx={{ fontWeight: 600 }}>
+              Поле не должно быть пустым
+            </Box>
+            <Box>
+              Пожалуйста, введите ваш вопрос перед отправкой.
             </Box>
           </Box>
         </Alert>

@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { AgreementCheckbox } from '../../Agreement/Agreement'
+import { sendNeed } from '@/app/actions/SendNeed'
 
 type Props = {
   textContent?: React.ReactNode
@@ -26,6 +27,7 @@ export function QuestionsFormClient({ textContent }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [cooldown, setCooldown] = useState(0)
   const [attempts, setAttempts] = useState(0)
+  const [emptyFieldsError, setEmptyFieldsError] = useState(false)
 
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
@@ -51,22 +53,18 @@ export function QuestionsFormClient({ textContent }: Props) {
       return
     }
 
+    if (!name.trim() || !need.trim()) {
+      setEmptyFieldsError(true)
+      setShowError(true)
+      return
+    }
+
     setIsSubmitting(true)
     try {
-      const response = await fetch('/api/needs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name, 
-          content: need
-        }),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Ошибка при отправке')
+      const res = await sendNeed(name, need)
+      if (!res.success) {
+        throw new Error(res.error || 'Ошибка при отправке')
       }
-
       setName('')
       setNeed('')
       setAgreed(false)
@@ -138,7 +136,7 @@ export function QuestionsFormClient({ textContent }: Props) {
         <AgreementCheckbox
           value={agreed}
           onChange={(val) => setAgreed(val)}
-          showError={showError}
+          showError={showError && !agreed}
           disabled={isSubmitting}
         />
         <Button
@@ -237,6 +235,41 @@ export function QuestionsFormClient({ textContent }: Props) {
               {cooldown > 0 
                 ? `Следующую отправку можно будет сделать через ${cooldown} сек.` 
                 : 'Пожалуйста, попробуйте отправить форму еще раз.'}
+            </Box>
+          </Box>
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={emptyFieldsError}
+        autoHideDuration={6000}
+        onClose={() => setEmptyFieldsError(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={() => setEmptyFieldsError(false)} 
+          severity="error" 
+          sx={{ 
+            width: '100%',
+            backgroundColor: '#FDEDED',
+            color: '#D32F2F',
+            '& .MuiAlert-icon': {
+              color: '#D32F2F',
+            },
+            '& .MuiAlert-message': {
+              fontSize: '16px',
+              fontFamily: 'Inter, sans-serif',
+            },
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            borderRadius: '12px',
+          }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+            <Box sx={{ fontWeight: 600 }}>
+              Поля не должны быть пустыми
+            </Box>
+            <Box>
+              Пожалуйста, заполните все поля перед отправкой.
             </Box>
           </Box>
         </Alert>
