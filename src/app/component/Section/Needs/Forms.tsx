@@ -53,7 +53,7 @@ export function QuestionsFormClient({ textContent }: Props) {
 
     setIsSubmitting(true)
     try {
-      const response = await fetch('/api/Needs', {
+      const response = await fetch('/api/needs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -73,7 +73,7 @@ export function QuestionsFormClient({ textContent }: Props) {
       setShowError(false)
       setSuccessOpen(true)
       setAttempts((prev) => prev + 1)
-      setCooldown(10 * (attempts + 1)) // Увеличиваем время ожидания с каждой попыткой
+      setCooldown(10 * (attempts + 1))
     } catch (error) {
       console.error('Ошибка:', error)
       setErrorOpen(true)
