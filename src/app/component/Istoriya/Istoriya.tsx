@@ -24,19 +24,17 @@ export default function VerticalTimelineProgress({ timeline }: Props) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || typeof window === 'undefined') return;
+      if (!containerRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const scrollProgress = Math.min(1, Math.max(0, (windowHeight - top) / (windowHeight + height)));
       setProgress(scrollProgress * totalHeight);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll);
-      handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
 
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [totalHeight]);
 
   return (

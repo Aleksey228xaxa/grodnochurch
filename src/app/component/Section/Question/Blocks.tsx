@@ -1,14 +1,10 @@
 'use client'
-import React, { useState, useEffect } from 'react'
-import { Box, Typography, Card, CardContent, Button, Modal, Backdrop } from '@mui/material'
+import React, { useState, useCallback, useEffect } from 'react'
+import { Box, Typography, Card, CardContent, Button, Modal, Backdrop, useMediaQuery } from '@mui/material'
 import { PrismicNextImage } from '@prismicio/next'
 import { ImageField } from '@prismicio/client'
-import { useMediaQuery } from '@mui/material'
-import dynamic from 'next/dynamic'
-
-// Динамический импорт Swiper компонентов
-const Swiper = dynamic(() => import('swiper/react').then(mod => ({ default: mod.Swiper })), { ssr: false })
-const SwiperSlide = dynamic(() => import('swiper/react').then(mod => ({ default: mod.SwiperSlide })), { ssr: false })
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 type Props = {
   date: string
@@ -227,51 +223,92 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
 
 export function QuestionBlocksSwiper({ blocks }: { blocks: Props[] }) {
   const isMobile = useMediaQuery('(max-width:630px)')
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, skipSnaps: false },
+    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+  )
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  )
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
 
   useEffect(() => {
-    // Инициализация Swiper модулей только на клиенте
-    if (typeof window !== 'undefined') {
-      import('swiper').then((SwiperCore) => {
-        import('swiper/modules').then(({ Autoplay, EffectFade, Pagination }) => {
-          SwiperCore.default.use([Autoplay, EffectFade, Pagination])
-        })
-      })
-    }
-  }, [])
+    if (!emblaApi) return
+
+    onSelect()
+    emblaApi.on('select', onSelect)
+  }, [emblaApi, onSelect])
 
   if (isMobile) {
     return (
       <Box mt={4}>
-        <style>{`
-          .swiper-pagination {
-            position: static !important;
-            margin-top: 20px !important;
-            text-align: center !important;
-          }
-          .swiper-pagination-bullet {
-            background: #BF9460 !important;
-            opacity: 0.5 !important;
-          }
-          .swiper-pagination-bullet-active {
-            opacity: 1 !important;
-          }
-        `}</style>
-        <Swiper
-          effect="fade"
-          centeredSlides={true}
-          slidesPerView={1}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          loop={true}
-          speed={700}
-          pagination={{ clickable: true }}
-          style={{ width: '100%', maxWidth: 430 }}
+        <Box
+          ref={emblaRef}
+          sx={{
+            overflow: 'hidden',
+            maxWidth: '430px',
+            mx: 'auto',
+          }}
         >
-          {blocks.map((block, idx) => (
-            <SwiperSlide key={idx}>
-              <NewsBlock {...block} />
-            </SwiperSlide>
+          <Box
+            sx={{
+              display: 'flex',
+              backfaceVisibility: 'hidden',
+              touchAction: 'pan-y',
+            }}
+          >
+            {blocks.map((block, idx) => (
+              <Box
+                key={idx}
+                sx={{
+                  flex: '0 0 100%',
+                  minWidth: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <NewsBlock {...block} />
+              </Box>
+            ))}
+          </Box>
+        </Box>
+
+        {/* Точки навигации */}
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 1,
+            mt: 2,
+          }}
+        >
+          {blocks.map((_, idx) => (
+            <Box
+              key={idx}
+              onClick={() => scrollTo(idx)}
+              sx={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                backgroundColor: selectedIndex === idx ? '#BF9460' : '#F8F1E9',
+                border: '1px solid #BF9460',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: selectedIndex === idx ? '#BF9460' : '#E8D5C0',
+                },
+              }}
+            />
           ))}
-        </Swiper>
+        </Box>
       </Box>
     )
   }
