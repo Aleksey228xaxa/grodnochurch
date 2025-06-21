@@ -36,10 +36,13 @@
     "framer-motion": "^12.15.0",
     "lucide-react": "^0.488.0",
     "next": "15.2.3",
+    "nextjs-toploader": "^3.8.16",
     "prisma": "^6.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
     "react-intersection-observer": "^9.16.0",
+    "swiper": "^11.2.8",
     "tailwind-merge": "^3.2.0"
   },
   "devDependencies": {

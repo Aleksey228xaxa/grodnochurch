@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Card } from '@mui/material'
+import { Box, Card, useMediaQuery } from '@mui/material'
 
 type ChurchMapProps = {
   latitude: number
@@ -8,14 +8,23 @@ type ChurchMapProps = {
 }
 
 export default function ChurchMap({ latitude, longitude }: ChurchMapProps) {
+  const isMobile = useMediaQuery('(max-width:630px)')
   const mapSrc = `https://yandex.by/map-widget/v1/?ll=${longitude}%2C${latitude}&z=16&pt=${longitude},${latitude},pm2rdm`
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+    <Box 
+      sx={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        gap: 2,
+        px: isMobile ? '20px' : 0
+      }}
+    >
       <Card
         sx={{
-          width: 400,
-          height: 400,
+          width: isMobile ? '100%' : 400,
+          height: isMobile ? 300 : 400,
           borderRadius: '10%',
           overflow: 'hidden',
           boxShadow: '0px 10px 30px rgba(191, 148, 96, 0.3)',

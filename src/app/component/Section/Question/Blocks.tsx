@@ -1,8 +1,14 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, Typography, Card, CardContent, Button, Modal, Backdrop } from '@mui/material'
 import { PrismicNextImage } from '@prismicio/next'
 import { ImageField } from '@prismicio/client'
+import { useMediaQuery } from '@mui/material'
+import dynamic from 'next/dynamic'
+
+// Динамический импорт Swiper компонентов
+const Swiper = dynamic(() => import('swiper/react').then(mod => ({ default: mod.Swiper })), { ssr: false })
+const SwiperSlide = dynamic(() => import('swiper/react').then(mod => ({ default: mod.SwiperSlide })), { ssr: false })
 
 type Props = {
   date: string
@@ -32,14 +38,19 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
     <>
       <Box display="flex">
         <Card
+          onClick={handleOpen}
           sx={{
             position: 'relative',
             width: 280,
             height: 470,
             display: 'flex',
             flexDirection: 'column',
-            boxShadow: '0px 10px 30px rgba(219, 160, 75, 0.3)',
+            boxShadow: 'none',
             borderBottomRightRadius: '16px',
+            cursor: 'pointer',
+            '&:hover': {
+              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+            },
           }}
         >
           <CardContent
@@ -109,7 +120,10 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
                 {tag}
               </Typography>
               <Button
-                onClick={handleOpen}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleOpen()
+                }}
                 sx={{
                   backgroundColor: '#BF9460',
                   color: '#fff',
@@ -126,7 +140,8 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
                   position: 'absolute',
                   bottom: 0,
                   right: 0,
-                  zIndex: 1,
+                  zIndex: 100,
+                  pointerEvents: 'auto',
                   '&:hover': {
                     backgroundColor: '#BF9460',
                   },
@@ -156,7 +171,7 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
             width: { xs: '90%', sm: 500 },
             bgcolor: 'background.paper',
             borderRadius: 2,
-            boxShadow: 24,
+            boxShadow: 'none',
             p: 4,
             maxHeight: '90vh',
             overflowY: 'auto',
@@ -207,5 +222,68 @@ export default function NewsBlock({ date, image, title, text, tag }: Props) {
         </Box>
       </Modal>
     </>
+  )
+}
+
+export function QuestionBlocksSwiper({ blocks }: { blocks: Props[] }) {
+  const isMobile = useMediaQuery('(max-width:630px)')
+
+  useEffect(() => {
+    // Инициализация Swiper модулей только на клиенте
+    if (typeof window !== 'undefined') {
+      import('swiper').then((SwiperCore) => {
+        import('swiper/modules').then(({ Autoplay, EffectFade, Pagination }) => {
+          SwiperCore.default.use([Autoplay, EffectFade, Pagination])
+        })
+      })
+    }
+  }, [])
+
+  if (isMobile) {
+    return (
+      <Box mt={4}>
+        <style>{`
+          .swiper-pagination {
+            position: static !important;
+            margin-top: 20px !important;
+            text-align: center !important;
+          }
+          .swiper-pagination-bullet {
+            background: #BF9460 !important;
+            opacity: 0.5 !important;
+          }
+          .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+          }
+        `}</style>
+        <Swiper
+          effect="fade"
+          centeredSlides={true}
+          slidesPerView={1}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          loop={true}
+          speed={700}
+          pagination={{ clickable: true }}
+          style={{ width: '100%', maxWidth: 430 }}
+        >
+          {blocks.map((block, idx) => (
+            <SwiperSlide key={idx}>
+              <NewsBlock {...block} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
+    )
+  }
+
+  // Десктоп: сетка
+  return (
+    <Box display="flex" flexWrap="wrap" gap="30px" justifyContent="center" mt="40px" maxWidth="1520px" mx="auto">
+      {blocks.map((block, idx) => (
+        <Box key={idx}>
+          <NewsBlock {...block} />
+        </Box>
+      ))}
+    </Box>
   )
 }

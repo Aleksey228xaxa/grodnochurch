@@ -58,14 +58,22 @@ const DrawerMenu: React.FC<Props> = ({
       anchor="left"
       open={drawerOpen}
       onClose={() => setDrawerOpen(false)}
+      sx={{
+        zIndex: 9999,
+        '& .MuiDrawer-paper': {
+          zIndex: 9999,
+        },
+      }}
       PaperProps={{
         sx: {
-          width: 280,
+          width: { xs: '80vw', sm: 280 },
+          maxWidth: '100%',
           bgcolor: "#f5f0e6",
           borderTopRightRadius: 16,
           borderBottomRightRadius: 16,
           p: 2,
           position: "relative",
+          zIndex: 9999,
         },
       }}
     >

@@ -10,7 +10,7 @@ export default async function Menu() {
   const menuOne = await client.getSingle("menu_one");
 
   return (
-    <Box sx={{ backgroundColor: "white", px: { xs: "40px", md: "50px" } }}>
+    <Box sx={{ backgroundColor: "white", px: { xs: "20px", md: "40px" } }}>
       <Box
         sx={{
           maxWidth: "1240px",

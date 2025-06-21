@@ -6,8 +6,6 @@ import {
   Box,
   Snackbar,
   Alert,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { AgreementCheckbox } from '../../Agreement/Agreement'
@@ -28,9 +26,6 @@ export function QuestionsFormClient({ textContent }: Props) {
   const [cooldown, setCooldown] = useState(0)
   const [attempts, setAttempts] = useState(0)
   const [emptyFieldsError, setEmptyFieldsError] = useState(false)
-
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     let timer: NodeJS.Timeout
@@ -83,17 +78,22 @@ export function QuestionsFormClient({ textContent }: Props) {
   return (
     <Box
       sx={{
-        px: { xs: 2, sm: 4, md: 8 },
-        py: 4,
+        px: { xs: 0.5, sm: 2, md: 8 },
+        py: { xs: 1.5, sm: 3, md: 4 },
         borderRadius: 4,
         backgroundColor: '#FAF6F0',
         boxShadow: '0 4px 24px rgba(0,0,0,0.05)',
-        maxWidth: 1040,
+        maxWidth: { xs: '100vw', sm: 600, md: 1040 },
+        width: { xs: '100vw', sm: '100%', md: '100%' },
         mx: 'auto',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        gap: 4,
+        gap: { xs: 1.5, sm: 3, md: 4 },
         alignItems: 'flex-start',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word',
       }}
     >
       {textContent && (
@@ -101,6 +101,11 @@ export function QuestionsFormClient({ textContent }: Props) {
           flex={1}
           sx={{
             width: '100%',
+            maxWidth: '100%',
+            mb: { xs: 2, md: 0 },
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            boxSizing: 'border-box',
           }}
         >
           {textContent}
@@ -112,8 +117,14 @@ export function QuestionsFormClient({ textContent }: Props) {
         component="form"
         display="flex"
         flexDirection="column"
-        gap={2}
+        gap={{ xs: 1.5, sm: 2 }}
         width="100%"
+        sx={{
+          maxWidth: '100%',
+          wordBreak: 'break-word',
+          overflowWrap: 'break-word',
+          boxSizing: 'border-box',
+        }}
       >
         <TextField
           label="Имя"
@@ -121,7 +132,18 @@ export function QuestionsFormClient({ textContent }: Props) {
           fullWidth
           value={name}
           onChange={(e) => setName(e.target.value)}
-          sx={inputStyle}
+          sx={{ ...inputStyle, fontSize: { xs: '15px', sm: '16px' }, maxWidth: '100%', wordBreak: 'break-word', overflowWrap: 'break-word', boxSizing: 'border-box' }}
+          InputProps={{
+            sx: {
+              fontSize: { xs: '15px', sm: '16px' },
+              height: { xs: 44, sm: 48 },
+            },
+          }}
+          InputLabelProps={{
+            sx: {
+              fontSize: { xs: '14px', sm: '16px' },
+            },
+          }}
           disabled={isSubmitting}
         />
         <TextField
@@ -130,7 +152,18 @@ export function QuestionsFormClient({ textContent }: Props) {
           fullWidth
           value={need}
           onChange={(e) => setNeed(e.target.value)}
-          sx={inputStyle}
+          sx={{ ...inputStyle, fontSize: { xs: '15px', sm: '16px' }, maxWidth: '100%', wordBreak: 'break-word', overflowWrap: 'break-word', boxSizing: 'border-box' }}
+          InputProps={{
+            sx: {
+              fontSize: { xs: '15px', sm: '16px' },
+              height: { xs: 44, sm: 48 },
+            },
+          }}
+          InputLabelProps={{
+            sx: {
+              fontSize: { xs: '14px', sm: '16px' },
+            },
+          }}
           disabled={isSubmitting}
         />
         <AgreementCheckbox
@@ -142,15 +175,15 @@ export function QuestionsFormClient({ textContent }: Props) {
         <Button
           variant="contained"
           onClick={handleSubmit}
-          fullWidth={isMobile}
+          fullWidth
           disabled={isSubmitting || cooldown > 0}
           sx={{
             backgroundColor: '#BF9460',
             color: '#FFF',
             borderRadius: 2,
-            py: 1.5,
+            py: { xs: 1, sm: 1.5 },
             textTransform: 'none',
-            fontSize: '16px',
+            fontSize: { xs: '15px', sm: '16px' },
             fontWeight: 500,
             fontFamily: 'Inter, sans-serif',
             '&:hover': {
@@ -175,12 +208,14 @@ export function QuestionsFormClient({ textContent }: Props) {
         autoHideDuration={6000}
         onClose={() => setSuccessOpen(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ mb: { xs: 8, sm: 0 }, maxWidth: '100vw', boxSizing: 'border-box' }}
       >
         <Alert 
           onClose={() => setSuccessOpen(false)} 
           severity="success" 
           sx={{ 
             width: '100%',
+            maxWidth: '100vw',
             backgroundColor: '#E8F5E9',
             color: '#2E7D32',
             '& .MuiAlert-icon': {
@@ -189,14 +224,20 @@ export function QuestionsFormClient({ textContent }: Props) {
             '& .MuiAlert-message': {
               fontSize: '16px',
               fontFamily: 'Inter, sans-serif',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              maxWidth: '100%',
             },
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             borderRadius: '12px',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            boxSizing: 'border-box',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <Box sx={{ fontWeight: 600 }}>Спасибо за ваше обращение!</Box>
-            <Box>Мы получили ваше сообщение.</Box>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%', boxSizing: 'border-box' }}>
+            <Box sx={{ fontWeight: 600, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>Спасибо за ваше обращение!</Box>
+            <Box sx={{ wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>Мы получили ваше сообщение.</Box>
           </Box>
         </Alert>
       </Snackbar>
@@ -206,12 +247,14 @@ export function QuestionsFormClient({ textContent }: Props) {
         autoHideDuration={6000}
         onClose={() => setErrorOpen(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ mb: { xs: 8, sm: 0 }, maxWidth: '100vw', boxSizing: 'border-box' }}
       >
         <Alert 
           onClose={() => setErrorOpen(false)} 
           severity="error" 
           sx={{ 
             width: '100%',
+            maxWidth: '100vw',
             backgroundColor: '#FDEDED',
             color: '#D32F2F',
             '& .MuiAlert-icon': {
@@ -220,18 +263,24 @@ export function QuestionsFormClient({ textContent }: Props) {
             '& .MuiAlert-message': {
               fontSize: '16px',
               fontFamily: 'Inter, sans-serif',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              maxWidth: '100%',
             },
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             borderRadius: '12px',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            boxSizing: 'border-box',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <Box sx={{ fontWeight: 600 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%', boxSizing: 'border-box' }}>
+            <Box sx={{ fontWeight: 600, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>
               {cooldown > 0 
                 ? 'Пожалуйста, подождите' 
                 : 'Произошла ошибка'}
             </Box>
-            <Box>
+            <Box sx={{ wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>
               {cooldown > 0 
                 ? `Следующую отправку можно будет сделать через ${cooldown} сек.` 
                 : 'Пожалуйста, попробуйте отправить форму еще раз.'}
@@ -245,12 +294,14 @@ export function QuestionsFormClient({ textContent }: Props) {
         autoHideDuration={6000}
         onClose={() => setEmptyFieldsError(false)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ mb: { xs: 8, sm: 0 }, maxWidth: '100vw', boxSizing: 'border-box' }}
       >
         <Alert 
           onClose={() => setEmptyFieldsError(false)} 
           severity="error" 
           sx={{ 
             width: '100%',
+            maxWidth: '100vw',
             backgroundColor: '#FDEDED',
             color: '#D32F2F',
             '& .MuiAlert-icon': {
@@ -259,16 +310,22 @@ export function QuestionsFormClient({ textContent }: Props) {
             '& .MuiAlert-message': {
               fontSize: '16px',
               fontFamily: 'Inter, sans-serif',
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              maxWidth: '100%',
             },
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             borderRadius: '12px',
+            wordBreak: 'break-word',
+            overflowWrap: 'break-word',
+            boxSizing: 'border-box',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <Box sx={{ fontWeight: 600 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%', boxSizing: 'border-box' }}>
+            <Box sx={{ fontWeight: 600, wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>
               Поля не должны быть пустыми
             </Box>
-            <Box>
+            <Box sx={{ wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: '100%' }}>
               Пожалуйста, заполните все поля перед отправкой.
             </Box>
           </Box>

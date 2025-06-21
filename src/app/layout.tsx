@@ -4,6 +4,7 @@ import { createClient } from "@/prismicio";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import { Inter } from 'next/font/google';
+import { Providers } from './Providers';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -31,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body style={{ margin: 0, padding: 0, overflowX: 'hidden', width: '100%' }}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

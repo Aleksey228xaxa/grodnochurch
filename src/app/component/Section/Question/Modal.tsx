@@ -1,11 +1,14 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Box, useMediaQuery, IconButton } from '@mui/material'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import React, { useEffect } from 'react'
+import { Box, useMediaQuery } from '@mui/material'
 import { ImageField } from '@prismicio/client'
 import QuestionBlock from './Blocks'
+import dynamic from 'next/dynamic'
+
+// Динамический импорт Swiper компонентов
+const Swiper = dynamic(() => import('swiper/react').then(mod => ({ default: mod.Swiper })), { ssr: false })
+const SwiperSlide = dynamic(() => import('swiper/react').then(mod => ({ default: mod.SwiperSlide })), { ssr: false })
 
 type Block = {
   date: string
@@ -22,37 +25,62 @@ type Props = {
 export default function QuestionBlocksResponsive({ blocks }: Props) {
   const isMobile = useMediaQuery(`(max-width:630px)`)
 
-  const [index, setIndex] = useState(0)
-
-  const handlePrev = () => {
-    setIndex((prev) => (prev > 0 ? prev - 1 : blocks.length - 1))
-  }
-
-  const handleNext = () => {
-    setIndex((prev) => (prev < blocks.length - 1 ? prev + 1 : 0))
-  }
+  useEffect(() => {
+    // Инициализация Swiper модулей только на клиенте
+    if (typeof window !== 'undefined') {
+      import('swiper').then((SwiperCore) => {
+        import('swiper/modules').then(({ Autoplay, EffectFade, Pagination }) => {
+          SwiperCore.default.use([Autoplay, EffectFade, Pagination])
+        })
+      })
+    }
+  }, [])
 
   if (isMobile) {
-    // Карусель на экранах < 630px
     return (
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        mt={4}
-        gap={2}
-      >
-        <IconButton onClick={handlePrev}  sx={{ bgcolor: '#BF9460', color: '#fff', pointerEvents: 'auto' }}>
-          <ArrowBackIosNewIcon />
-        </IconButton>
-
-        <Box>
-          <QuestionBlock {...blocks[index]} />
-        </Box>
-
-        <IconButton onClick={handleNext}  sx={{ bgcolor: '#BF9460', color: '#fff', pointerEvents: 'auto' }}>
-          <ArrowForwardIosIcon />
-        </IconButton>
+      <Box mt={4}>
+        <style>{`
+          .swiper-pagination {
+            position: static !important;
+            margin-top: 20px !important;
+            text-align: center !important;
+          }
+          .swiper-pagination-bullet {
+            background: #BF9460 !important;
+            opacity: 0.5 !important;
+          }
+          .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+          }
+        `}</style>
+        <Swiper
+          effect="fade"
+          centeredSlides={true}
+          slidesPerView={1}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          loop={true}
+          speed={700}
+          pagination={{ clickable: true }}
+          style={{ width: '100%', maxWidth: 430 }}
+        >
+          {blocks.map((block, idx) => (
+            <SwiperSlide key={idx}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  backfaceVisibility: 'hidden',
+                  WebkitFontSmoothing: 'antialiased',
+                  transform: 'translateZ(0)',
+                  boxShadow: 'none',
+                  background: 'none',
+                }}
+              >
+                <QuestionBlock {...block} />
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Box>
     )
   }

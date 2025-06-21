@@ -8,19 +8,25 @@ const CookieBanner = () => {
 
 
   const handleAccept = () => {
-    localStorage.setItem("cookiesAccepted", "true");
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("cookiesAccepted", "true");
+    }
     setIsVisible(false);
   };
 
   const handleReject = () => {
-    localStorage.setItem("cookiesAccepted", "false");
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("cookiesAccepted", "false");
+    }
     setIsVisible(false);
   };
 
   useEffect(() => {
-    const cookiesAccepted = localStorage.getItem("cookiesAccepted");
-    if (cookiesAccepted === "true" || cookiesAccepted === "false") {
-      setIsVisible(false);
+    if (typeof window !== 'undefined') {
+      const cookiesAccepted = localStorage.getItem("cookiesAccepted");
+      if (cookiesAccepted === "true" || cookiesAccepted === "false") {
+        setIsVisible(false);
+      }
     }
   }, []);
 

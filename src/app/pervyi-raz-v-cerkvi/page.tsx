@@ -20,7 +20,7 @@ export default async function Home() {
     <Box>
        <Box
       width="100%"
-      height="450px"
+      height={{ xs: "300px", sm: "350px", md: "450px" }}
       m="0"
       p="0"
       sx={{

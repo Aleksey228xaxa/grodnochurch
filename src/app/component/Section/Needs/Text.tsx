@@ -5,5 +5,15 @@ export default async function NeedsText() {
   const client = createClient();
   const HomePage = await client.getSingle("home_page");
 
-  return <Box width='430px'>{HomePage.data.text_needs}</Box>;
+  return <Box
+    sx={{
+      width: '100%',
+      maxWidth: 430,
+      wordBreak: 'break-word',
+      overflowWrap: 'break-word',
+      boxSizing: 'border-box',
+    }}
+  >
+    {HomePage.data.text_needs}
+  </Box>;
 }

@@ -32,11 +32,15 @@ const MenuClient: React.FC<Props> = ({ menuData }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 130);
+      if (typeof window !== 'undefined') {
+        setScrolled(window.scrollY > 130);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, index: number) => {
@@ -89,7 +93,7 @@ const MenuClient: React.FC<Props> = ({ menuData }) => {
                 sx={{
                   position: "absolute",
                   right: 8,
-                  px: { xs: "50px", md: "60px" },
+                  px: { xs: "25px", md: "50px" },
                 }}
               >
                 <MenuIcon />
