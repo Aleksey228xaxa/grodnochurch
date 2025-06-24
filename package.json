@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "slicemachine": "start-slicemachine",
@@ -22,7 +23,7 @@
     "@mui/lab": "^7.0.0-beta.12",
     "@mui/material": "^7.0.2",
     "@mui/system": "^7.0.2",
-    "@prisma/client": "^6.6.0",
+    "@prisma/client": "^6.10.1",
     "@prismicio/client": "^7.16.1",
     "@prismicio/helpers": "^2.3.9",
     "@prismicio/next": "^2.0.0",

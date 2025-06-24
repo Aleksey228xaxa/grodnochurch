@@ -1,6 +1,7 @@
 'use server'
 
-import { prisma } from '../../../prisma/prisma-client'
+import { prisma } from "../../../prisma/prisma-client"
+
 
 export async function sendMessage(message: string) {
   if (!message) {
