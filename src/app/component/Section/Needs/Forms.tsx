@@ -78,13 +78,12 @@ export function QuestionsFormClient({ textContent }: Props) {
   return (
     <Box
       sx={{
-        px: { xs: 0.5, sm: 2, md: 8 },
+        px: { xs: 2.5, sm: 2, md: 8 },
         py: { xs: 1.5, sm: 3, md: 4 },
         borderRadius: 4,
         backgroundColor: '#FAF6F0',
         boxShadow: '0 4px 24px rgba(0,0,0,0.05)',
-        maxWidth: { xs: '100vw', sm: 600, md: 1040 },
-        width: { xs: '100vw', sm: '100%', md: '100%' },
+        maxWidth: { xs: 600, sm: 600, md: 1040 },
         mx: 'auto',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
