@@ -1,24 +1,32 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import { Button, Container, Typography, Box, Link } from "@mui/material";
-import Image from "next/image"; 
+import Image from "next/image";
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
 
+  const deleteAllCookies = () => {
+    document.cookie.split(";").forEach((cookie) => {
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+    });
+  };
 
   const handleAccept = () => {
     if (typeof window !== 'undefined') {
       localStorage.setItem("cookiesAccepted", "true");
+      setIsVisible(false);
     }
-    setIsVisible(false);
   };
 
   const handleReject = () => {
     if (typeof window !== 'undefined') {
       localStorage.setItem("cookiesAccepted", "false");
+      deleteAllCookies(); // удаляет client-side cookies
+      setIsVisible(false);
     }
-    setIsVisible(false);
   };
 
   useEffect(() => {
@@ -66,18 +74,11 @@ const CookieBanner = () => {
             alt="Cookie Icon"
             width={40}
             height={40}
-            style={{ 
-              minWidth: 40,
-              height: 'auto'
-            }}
+            style={{ minWidth: 40, height: 'auto' }}
           />
           <Typography 
             variant="body2" 
-            sx={{ 
-              flexGrow: 1,
-              fontSize: { xs: '0.875rem', sm: '1rem' },
-              lineHeight: 1.5,
-            }}
+            sx={{ fontSize: { xs: '0.875rem', sm: '1rem' }, lineHeight: 1.5 }}
           >
             Мы используем cookies для улучшения качества обслуживания.{" "}
             <Link 
@@ -85,9 +86,7 @@ const CookieBanner = () => {
               sx={{ 
                 color: "#f0f0f0",
                 textDecoration: 'underline',
-                '&:hover': {
-                  color: '#BF9460',
-                }
+                '&:hover': { color: '#BF9460' }
               }}
             >
               Подробнее
@@ -123,9 +122,7 @@ const CookieBanner = () => {
             onClick={handleAccept}
             sx={{
               backgroundColor: '#BF9460',
-              '&:hover': {
-                backgroundColor: '#A5793B',
-              },
+              '&:hover': { backgroundColor: '#A5793B' },
               minWidth: { xs: '120px', sm: '140px' }
             }}
           >
