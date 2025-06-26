@@ -4,8 +4,12 @@ import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import Title from "./Title";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
-  const client = createClient()
+  const client = createClient({
+    fetch: (url, options = {}) => fetch(url, { ...options, cache: "no-store" }),
+  })
   const HomePage = await client.getSingle<Content.NewsEventsDocument>('news_events')
   const document = await client.getSingle("calendar")
 
